@@ -155,12 +155,16 @@ namespace Oxide.Plugins
             return barrel;
         }
 
+        #endregion Barrel Spawning
+
+        #region Helper Functions
+
         private bool ChanceSucceeded(int chance)
         {
             return Random.Range(0, 100) < chance;
         }
 
-        #endregion Barrel Spawning
+        #endregion Helper Functions
 
         #region Permissions
 
