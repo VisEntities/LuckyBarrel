@@ -23,8 +23,8 @@ namespace Oxide.Plugins
             [JsonProperty("Version")]
             public string Version { get; set; }
 
-            [JsonProperty("Always Spawn Loot Barrel")]
-            public bool AlwaysSpawnLootBarrel { get; set; }
+            [JsonProperty("Always Turn Into Loot Barrel")]
+            public bool AlwaysTurnIntoLootBarrel { get; set; }
 
             [JsonProperty("Chance To Spawn Loot Barrel")]
             public int ChanceToSpawnLootBarrel { get; set; }
@@ -72,7 +72,7 @@ namespace Oxide.Plugins
             return new Configuration
             {
                 Version = Version.ToString(),
-                AlwaysSpawnLootBarrel = true,
+                AlwaysTurnIntoLootBarrel = true,
                 ChanceToSpawnLootBarrel = 50,
                 LootBarrelPrefabs = new List<string>
                 {
@@ -114,10 +114,10 @@ namespace Oxide.Plugins
             if (!PermissionUtil.HasPermission(player, PermissionUtil.USE))
                 return;
 
-            if (!_config.AlwaysSpawnLootBarrel && !player.serverInput.WasDown(BUTTON.FIRE_SECONDARY))
+            if (!_config.AlwaysTurnIntoLootBarrel && !player.serverInput.WasDown(BUTTON.FIRE_SECONDARY))
                 return;
 
-            if (_config.AlwaysSpawnLootBarrel && !ChanceSucceeded(_config.ChanceToSpawnLootBarrel))
+            if (_config.AlwaysTurnIntoLootBarrel && !ChanceSucceeded(_config.ChanceToSpawnLootBarrel))
                 return;
 
             BaseEntity entity = gameObject.ToBaseEntity();
